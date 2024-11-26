@@ -1,0 +1,30 @@
+
+
+services:
+  db:
+    image: postgres
+    container_name: db
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - ./.postgres_data:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}:${DOCKER_PORT}
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:
+
