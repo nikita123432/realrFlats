@@ -14,7 +14,7 @@ DB_PORT = os.environ.get("DB_PORT", 5432)
 DOCKER_PORT = os.environ.get("DOCKER_PORT", 5432)
 
 SECRET_AUTH = os.environ.get("SECRET_AUTH")
-PHOTO_DIR = os.path.join(os.getcwd(), "uploads", "photos")
+PHOTO_DIR = Path("uploads/photos")
 
 if not SECRET_AUTH:
     raise ValueError("SECRET_AUTH is not defined in the environment variables.")

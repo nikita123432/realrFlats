@@ -3,7 +3,7 @@ from typing import Optional
 
 from fastapi_users import schemas
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class UserRead(schemas.BaseUser[int]):
@@ -15,8 +15,11 @@ class UserRead(schemas.BaseUser[int]):
     is_superuser: bool = False
     is_verified: bool = False
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UpdateRoleRequest(BaseModel):
+    role_id: int  # ID новой роли
 
 
 class UserCreate(schemas.BaseUserCreate):
@@ -41,3 +44,11 @@ class BaseUser(BaseModel):
     id: int
     username: str
     email: str
+
+
+class BaseUserWithRole(BaseModel):
+    id: int
+    username: str
+    email: str
+    role_id: int
+

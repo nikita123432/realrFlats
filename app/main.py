@@ -2,11 +2,12 @@ from fastapi import FastAPI, Depends
 from fastapi_users import FastAPIUsers
 
 from app.shemas.users import UserRead, UserCreate, BaseUser, UserUpdate
+
 from fastapi.middleware.cors import CORSMiddleware
-from app.router.router import router as router_operation
+from app.router.router import router as router_operation, router
 from app.auth.base_config import auth_backend
 from app.auth.manager import get_user_manager
-from app.models.users import User
+from app.models import users
 
 app = FastAPI(
     title="Flats"
@@ -30,6 +31,8 @@ app.include_router(
     tags=["auth"],
 )
 
+
+
 # app.include_router(
 #     fastapi_users.get_users_router(UserRead, UserUpdate),
 #     prefix="/users",
@@ -37,8 +40,9 @@ app.include_router(
 # )
 
 
-
 app.include_router(router_operation)
+# app.include_router(users.router)
+
 
 origins = [
     "http://localhost:5173",

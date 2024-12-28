@@ -12,9 +12,11 @@ python-dotenv = "*"
 psycopg2 = "*"
 lemon-metadata = "*"
 automium-web = "*"
-fastapi-users = {extras = ["sqlalchemy"], version = "*"}
+fastapi-users = {extras = ["sqlalchemy"] }
 asyncpg = "*"
 pydantic = "<2.0"
+photos = "*"
+favorites = "*"
 
 [dev-packages]
 
